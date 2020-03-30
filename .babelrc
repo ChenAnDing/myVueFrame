@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["babel-preset-env", {
+      "targets": {
+        "browser": ["> 1%"]
+      },
+      "corejs": 3
+    }]
+  ],
+  "plugins": ["transform-runtime","syntax-dynamic-import"]
+}
