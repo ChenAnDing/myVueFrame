@@ -5,7 +5,8 @@
         "browser": ["> 1%"]
       },
       "corejs": 3
-    }]
+    }],
+    "stage-2"
   ],
   "plugins": ["transform-runtime","syntax-dynamic-import"]
 }
