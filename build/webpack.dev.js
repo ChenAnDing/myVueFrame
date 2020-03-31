@@ -4,6 +4,8 @@ const merge = require('webpack-merge')
 const webpack = require('webpack')
 const path = require('path')
 module.exports = merge(common, {
+  // wepback 4.0以上用这个指定开发环境
+  mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
     host: 'localhost',

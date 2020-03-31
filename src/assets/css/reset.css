@@ -1,5 +1,6 @@
-
-body {
-  margin: 0;
-  padding: 0;
-}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,input,button,textarea,p,th,td{padding:0;margin:0;}
+fieldset,img{border:0;}
+ol,ul,li {list-style:none;}
+table {border-collapse:collapse;border-spacing:0;}
+body{font-size:16px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+*{font-family: Consolas,tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;}

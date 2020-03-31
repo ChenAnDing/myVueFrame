@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import { mapActions, Store } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -19,20 +19,29 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {
-      // console.log(vm, 'vm')
     })
   },
   methods: {
     // ...mapActions(['getCountData']),
     goDemo2() {
-      this.$router.push({name: 'demo2', params: {id: 123},}, () => {
-        this.ddd = 4888
-        // console.log(this.ddd)
-      })
+      // this.$router.push({name: 'demo2', params: {id: 123},}, () => {
+      //   this.ddd = 4888
+      // })
+      this.$bus.$emit('sendMsg', 123)
+    },
+    async getHttpData() {
+      let res = await this.$axios.get('https://api.coindesk.com/v1/bpi/currentprice.json')
+      console.log(res, 'res')
     }
   },
   async mounted() {
     this.$store.dispatch('getCountData')
+    console.log(this.ENV, 'ENV')
+    this.$bus.$on('sendMsg', (msg) => {
+      console.log(msg)
+    })
+
+    this.getHttpData()
   }
 }
 </script>

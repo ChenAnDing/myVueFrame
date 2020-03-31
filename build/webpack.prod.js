@@ -5,6 +5,7 @@ const webpack = require('webpack')
 const MinifyPlugin = require('babel-minify-webpack-plugin')
 module.exports = merge(common, {
   devtool: 'source-map',
+  // wepback 4.0以上用这个指定生产环境
   mode: 'production',
   plugins: [
     new webpack.DefinePlugin({

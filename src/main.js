@@ -1,8 +1,23 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router/index'
-import store from './vuex/index'
+import router from '@/router/index'
+import store from '@/vuex/index'
+import ENV from '@/config/env'
 import '@/assets/css/reset.css'
+import './utils/EventBus'
+import '@/config/axios'
+
+/**
+ * 注册全局配置
+ */
+Vue.mixin({
+  data() {
+    return {
+      ENV: ENV
+    }
+  },
+})
+
 
 router.beforeEach((to, from, next) => {
   // console.log(to)

@@ -14,7 +14,6 @@ const actions = {
   getCountData({ dispatch, commit, state }) {
     setTimeout(() => {
       commit('SET_DEMO', 20)
-      console.log(state.count, '123')
     }, 1000);
   }
 }
