@@ -3,6 +3,34 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+const rpxNumReg = /([+-]?([0-9]*\.?[0-9]+|[0-9]+\.?[0-9]*)([eE][+-]?[0-9]+)?)rpx/g
+
+const cssAndScssLoader = [
+  // 这里要注意顺序,执行是从后到前,执行顺序要符合转化过程
+  'style-loader',
+  'css-loader',
+  'postcss-loader',
+  {
+    loader  : 'sass-loader',
+    options : {
+      // 在每个scss文件头部加入这个字符串,这里是导入common.scss问题
+      data : '@import "~@/assets/style/rem.scss";'
+    }
+  },
+  {
+    // 用户替换字符串,把数字+rpx的替换成rem(数字)
+    loader: 'regexp-replace-loader',
+    options: {
+      match: {
+        pattern: rpxNumReg.source,
+        flags: rpxNumReg.flags
+      },
+      replaceWith: 'rem($1)'
+    }
+  }
+]
+
 module.exports = {
   // 入口
   entry: {
@@ -16,35 +44,13 @@ module.exports = {
   // 配置各种loader
   module: {
     rules: [
-      { // 这里要注意顺序,执行是从后到前,执行顺序要符合转化过程
+      {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          {
-            loader  : 'sass-loader',
-            options : {
-              // 在每个scss文件头部加入这个字符串,这里是导入common.scss问题
-              data : '@import "~@/assets/style/rem.scss";'
-            }
-          },
-        ]
+        use: cssAndScssLoader
       },
       { // 同css
         test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          {
-            loader  : 'sass-loader',
-            options : {
-              // 在每个scss文件头部加入这个字符串,这里是导入common.scss问题
-              data : '@import "~@/assets/style/rem.scss";'
-            }
-          },
-        ]
+        use: cssAndScssLoader
       },
       {
         test: /\.(png|jpe?g|svg|gif)?(\?\S*)?$/,

@@ -19,10 +19,9 @@ $color: darkcyan;
   .d {
     width: 100%;
     .ddd {
-      width: rem(375);
-      height: rem(50);
+      width: 375rpx;
+      height: 50rpx;
       background: $color;
-      // margin: auto;
     }
   }
   

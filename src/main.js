@@ -13,7 +13,7 @@ import '@/config/axios'
 Vue.mixin({
   data() {
     return {
-      ENV: ENV
+      ENV
     }
   },
 })
