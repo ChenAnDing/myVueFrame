@@ -1,0 +1,13 @@
+
+
+/**
+*适配
+*/
+
+$psdBaseSize: 750;
+// $maxBaseSize: 540;
+
+@function rem($value) {
+  @return $value / $psdBaseSize * 10rem;
+}
+

@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="d">
     <!-- {{$route.params.id} -->
-    88888
+    <div class="ddd"></div>
   </div>
 </template>
 <script>
@@ -12,7 +12,18 @@ export default {
     }
   }
 }
+
 </script>
 <style lang="scss" scoped>
+$color: darkcyan;
+  .d {
+    width: 100%;
+    .ddd {
+      width: rem(375);
+      height: rem(50);
+      background: $color;
+      // margin: auto;
+    }
+  }
   
 </style>

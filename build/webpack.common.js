@@ -22,7 +22,13 @@ module.exports = {
           'style-loader',
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          {
+            loader  : 'sass-loader',
+            options : {
+              // 在每个scss文件头部加入这个字符串,这里是导入common.scss问题
+              data : '@import "~@/assets/style/rem.scss";'
+            }
+          },
         ]
       },
       { // 同css
@@ -31,7 +37,13 @@ module.exports = {
           'style-loader',
           'css-loader',
           'postcss-loader',
-          'sass-loader'
+          {
+            loader  : 'sass-loader',
+            options : {
+              // 在每个scss文件头部加入这个字符串,这里是导入common.scss问题
+              data : '@import "~@/assets/style/rem.scss";'
+            }
+          },
         ]
       },
       {

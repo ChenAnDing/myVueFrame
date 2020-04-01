@@ -1,0 +1,37 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,form,fieldset,input,button,textarea,p,th,td{padding:0;margin:0;}
+fieldset,img{border:0;}
+ol,ul,li {list-style:none;}
+table {border-collapse:collapse;border-spacing:0;}
+body{font-size:16px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+*{font-family: Consolas,tahoma,arial,'Hiragino Sans GB','\5b8b\4f53',sans-serif;}
+
+
+
+
+/**
+*rem的适配和reset
+*/
+html:root{
+  font-size:10vw;
+}
+
+@media screen and (min-width: (540 * 1px)) {
+  html:root {
+    font-size: 540 / 10 * 1px;
+  }
+}
+
+body {
+  font-size: 16px;
+  font-family: "Helvetica Neue",Helvetica,Arial,Sans-serif;
+}
+
+a,button,input,textarea{-webkit-tap-highlight-color:transparent;}
+div, section {
+   -webkit-touch-callout:none;
+   -webkit-user-select:none;
+   -khtml-user-select:none;
+   -moz-user-select:none;
+   -ms-user-select:none;
+   user-select:none;
+}

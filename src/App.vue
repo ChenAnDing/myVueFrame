@@ -10,8 +10,7 @@ export default {
 </script>
 <style scoped>
   #app {
-    padding: 0;
-    margin: 0;
-    display: flex;
+    max-width: 10rem;
+    margin: 0 auto;
   }
 </style>

@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from '@/router/index'
 import store from '@/vuex/index'
 import ENV from '@/config/env'
-import '@/assets/css/reset.css'
+import '@/assets/style/reset.scss'
 import './utils/EventBus'
 import '@/config/axios'
 
