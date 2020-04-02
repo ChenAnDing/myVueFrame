@@ -1,7 +1,7 @@
 <template>
   <div class="d">
     <!-- {{$route.params.id} -->
-    <div class="ddd"></div>
+    <div class="ddd" @click="showToast"></div>
   </div>
 </template>
 <script>
@@ -10,7 +10,19 @@ export default {
     return {
       aaa: 123
     }
-  }
+  },
+  methods: {
+    showToast() {
+      // this.$toast('你好啊')
+      this.$loading.open('hahhahahahahhhahahah')
+      setTimeout(() => {
+        this.$loading.close()
+      }, 2000);
+    }
+  },
+  mounted() {
+
+  },
 }
 
 </script>
