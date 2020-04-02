@@ -1,5 +1,4 @@
 # myVueFrame
-# 作者: 陈安顶<853083255@qq.com>
 
 启动流程:
 1,跑 npm i 安装依赖
@@ -31,7 +30,7 @@ this.$toast({
 })
 
 loading: 可调用this.$loading.open()开启  this.$loading.close()关闭
-如需改变文案,调用this.$loading.ope('改变的文案') 这里不建议改变长的文案,因为样式会乱,别人为什么,问就是懒
+如需改变文案,调用this.$loading.ope('改变的文案') 这里不建议改变长的文案,因为样式会乱,别问为什么,问就是懒
 
 
 
