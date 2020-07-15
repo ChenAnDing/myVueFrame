@@ -3,34 +3,9 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
-
-const rpxNumReg = /([+-]?([0-9]*\.?[0-9]+|[0-9]+\.?[0-9]*)([eE][+-]?[0-9]+)?)rpx/g
-
-const cssAndScssLoader = [
-  // 这里要注意顺序,执行是从后到前,执行顺序要符合转化过程
-  'style-loader',
-  'css-loader',
-  'postcss-loader',
-  {
-    loader  : 'sass-loader',
-    options : {
-      // 在每个scss文件头部加入这个字符串,这里是导入common.scss问题
-      data : '@import "~@/assets/style/rem.scss";'
-    }
-  },
-  {
-    // 用户替换字符串,把数字+rpx的替换成rem(数字)
-    loader: 'regexp-replace-loader',
-    options: {
-      match: {
-        pattern: rpxNumReg.source,
-        flags: rpxNumReg.flags
-      },
-      replaceWith: 'rem($1)'
-    }
-  }
-]
-
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const cssAndScssLoader = require('./cssAndScssLoader')
+const webpack = require('webpack')
 module.exports = {
   // 入口
   entry: {
@@ -45,11 +20,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: cssAndScssLoader
-      },
-      { // 同css
-        test: /\.scss$/,
+        test: /\.(sa|sc|c)ss$/,
         use: cssAndScssLoader
       },
       {
@@ -63,7 +34,10 @@ module.exports = {
       },
       {
         test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
-        loader: 'file-loader'
+        loader: 'file-loader',
+        options: {
+          name: '[name]_[hash:8].[ext]'
+        }
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -85,11 +59,28 @@ module.exports = {
   plugins: [
     // 生成合同文件模板
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '../index.html')
+      template: path.resolve(__dirname, '../index.html'),
+      filename: 'index.html',
+      chunks: ['main','vendors'],
+      inject: true,
+      minify: {
+        html5: true,
+        collapseWhitespace: true,
+        preserveLineBreaks: false,
+        minifyCSS: true,
+        minifyJS: true,
+        removeComments: false
+      }
     }),
     // 清除文件插件
     new CleanWebpackPlugin(),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name]_[contenthash:8].css'
+    }),
+    new webpack.ProvidePlugin({
+        _: 'lodash'
+    }),
   ],
   resolve: {
     // 匹配文件后缀,可以不写后缀直接匹配

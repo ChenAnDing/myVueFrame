@@ -7,7 +7,7 @@ import '@/plugins/index.js'
 import '@/assets/style/reset.scss'
 import './utils/EventBus'
 import '@/config/axios'
-
+import 'lib-flexible'
 /**
  * 注册全局配置
  */

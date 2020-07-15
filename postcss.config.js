@@ -12,7 +12,13 @@ module.exports = {
         'last 5 Firefox versions',
         'Safari >= 6', 
         //'last 10 versions', // 所有主流浏览器最近10版本用
-    ],grid: true})
+    ],grid: true}),
+    require('postcss-px2rem')({
+      // UI稿的十分之一
+      remUnit: 75,
+      // px转为rem的时候小数点后面的位数
+      remPrecision: 8
+    })
 
   ]
 }
